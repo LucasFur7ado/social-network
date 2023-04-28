@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'mainFont';
+    src: url('./lib/assets/fonts/coolvetic.otf');
+}
+
+:root {
+    --primary: #46beff;
+    --primary-transparent: #46beff55;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    background-color: #141414;
+    color: white;
+}
+
+body::-webkit-scrollbar, div::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+body::-webkit-scrollbar:vertical, div::-webkit-scrollbar:vertical {
+    width: 0px;
+}
+
+body::-webkit-scrollbar-button:increment, div::-webkit-scrollbar-button:increment
+.contenedor::-webkit-scrollbar-button {
+    display: none;
+}
+
+body::-webkit-scrollbar:horizontal, div::-webkit-scrollbar:horizontal {
+    height: 0px;
+}
+
+body::-webkit-scrollbar-thumb, div::-webkit-scrollbar-thumb {
+    background-color: #303030;
+    border-radius: 20px;
+    border: none;
+}
+
+body::-webkit-scrollbar-track, div::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
