@@ -1,5 +1,3 @@
-social-network
-==================
 # Red social minimalista 
 Desarrollada con:
 - Svelte
