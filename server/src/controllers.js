@@ -30,10 +30,13 @@ controllers.like = async (req, res) => {
                         res.send({ success: true })
                 })
         })
-        .catch(err => res.send({
-            success: false,
-            message: err
-        }))
+        .catch(err => {
+            console.log("Error => ", err)
+            res.send({
+                success: false,
+                message: err
+            })
+        })
 }
 
 controllers.verifyLogin = async (req, res) => {
@@ -55,10 +58,13 @@ controllers.search = async (req, res) => {
                 data: r[0]
             })
         })
-        .catch(err => res.send({
-            success: false,
-            message: err
-        }))
+        .catch(err => {
+            console.log("Error => ", err)
+            res.send({
+                success: false,
+                message: err
+            })
+        })
 }
 
 controllers.follow = async (req, res) => {
@@ -72,32 +78,51 @@ controllers.follow = async (req, res) => {
         .then(async r => {
             res.send({ success: true })
         })
-        .catch(err => res.send({
-            success: false,
-            message: err
-        }))
+        .catch(err => {
+            console.log("Error => ", err)
+            res.send({
+                success: false,
+                message: err
+            })
+        })
 }
 
 controllers.getProfile = async (req, res) => {
     let id = req.params.id
-    await promisePool.query(`select * from users where id = ${id}`)
+    await promisePool.query(`select users.username, users.name,
+    users.followers, posts.* from users  
+    JOIN posts on posts.userId = ${id} and users.id = ${id} and posts.isPublic = 1`)
         .then(async result => {
-            await promisePool.query(`select * from posts 
-            where userId = ${result[0][0].id} and isPublic = 1`)
+            let postIds = '', finalData, user = result[0][0]
+            result[0].map(r => postIds += r.id + ',')
+            finalData = result[0]
+            await promisePool.query(`select postId from postLikes where
+            userId = ${req.body.userId} and postId IN (${postIds.slice(0, -1)})`)
                 .then(result2 => {
+                    finalData = finalData.map(f => {
+                        return {
+                            ...f,
+                            liked: result2[0].some(i => i.postId == f.id)
+                        }
+                    })
                     res.send({
                         success: true,
                         data: {
-                            user: result[0][0],
-                            posts: result2[0]
-                        }
-                    })
-                })
+                            user: {
+                                followers: user.followers,
+                                username: user.username,
+                                name: user.name,
+                                id: user.id,
+                            },
+                            posts: finalData
+                        }})})})
+        .catch(err => {
+            console.log("Error => ", err)
+            res.send({
+                success: false,
+                message: err
+            })
         })
-        .catch(err => res.send({
-            success: false,
-            message: err
-        }))
 }
 
 controllers.newPost = async (req, res) => {
@@ -116,10 +141,13 @@ controllers.newPost = async (req, res) => {
                     post: result2[0][0]
                 }))
         })
-        .catch(err => res.send({
-            success: false,
-            message: err
-        }))
+        .catch(err => {
+            console.log("Error => ", err)
+            res.send({
+                success: false,
+                message: err
+            })
+        })
 }
 
 controllers.getPublicPosts = async (req, res) => {
@@ -131,6 +159,11 @@ controllers.getPublicPosts = async (req, res) => {
 
     await promisePool.query(q)
         .then(async result => {
+            if(!result[0].length)
+                return res.send({
+                    success: true,
+                    data: []
+                })
             let postIds = '', finalData
             result[0].map(r => postIds += r.id + ',')
             finalData = result[0]
@@ -149,10 +182,13 @@ controllers.getPublicPosts = async (req, res) => {
                     })
                 })
         })
-        .catch(err => res.send({
-            success: false,
-            message: err
-        }))
+        .catch(err => {
+            console.log("Error => ", err)
+            res.send({
+                success: false,
+                message: err
+            })
+        })
 }
 
 controllers.login = async (req, res) => {
