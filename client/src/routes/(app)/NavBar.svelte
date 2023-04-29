@@ -20,7 +20,7 @@ onMount(async () => (data = await loadUser()))
         <i class="bx bx-search"></i>
         <li>Buscar</li>
       </a>
-      <a href="/" class="text-2xl gap-2 mb-2  
+      <a href={`/profile/${data?.id}`} class="text-2xl gap-2 mb-2  
       flex flex-row items-center w-full font-[mainFont]">
         <i class="bx bxs-user"></i>
         <li>Cuenta</li>

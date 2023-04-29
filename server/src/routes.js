@@ -11,6 +11,7 @@ router.get('/getProfile/:id', controllers.getProfile)
 // router.post('/register', controllers.register)
 // router.get('/getUser', controllers.getPrivatePosts)
 
+router.post('/like', isLogged, controllers.like)
 router.post('/follow', isLogged, controllers.follow)
 router.post('/newPost', isLogged, controllers.newPost)
 router.get('/verifyLogin', isLogged, controllers.verifyLogin)

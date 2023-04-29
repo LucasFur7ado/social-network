@@ -6,6 +6,36 @@ import { generateCode } from './services/generateCode.js'
 
 export const controllers = {}
 
+controllers.like = async (req, res) => {
+    if (!req.body.id || req.body.unlike == undefined)
+        return res.send({
+            success: false,
+            message: 'Empty data'
+        })
+
+    let q = req.body.unlike ?
+        `DELETE FROM postLikes WHERE userId = ${req.body.userId} AND 
+        postId = ${req.body.id}` :
+        `INSERT INTO postLikes(postId, userId)
+        VALUES (${req.body.id}, ${req.body.userId})`
+
+    await promisePool.query(q)
+        .then(async r => {
+            // TODO: create trigger instead of manually   
+            // update likesCount in posts 
+            await promisePool.query(`UPDATE posts SET likesCount = likesCount 
+            ${req.body.unlike ? '- 1' : '+ 1'} where id = ${req.body.id}`)
+                .then(async r2 => {
+                    if (r2[0].affectedRows)
+                        res.send({ success: true })
+                })
+        })
+        .catch(err => res.send({
+            success: false,
+            message: err
+        }))
+}
+
 controllers.verifyLogin = async (req, res) => {
     res.send({ success: true })
 }
@@ -18,7 +48,7 @@ controllers.search = async (req, res) => {
             message: 'Empty text'
         })
     await promisePool.query(`select id, name, username from users 
-    where name LIKE '%${text}%' OR username LIKE '%${text}%'`)
+        where name LIKE '%${text}%' OR username LIKE '%${text}%'`)
         .then(async r => {
             res.send({
                 success: true,
@@ -63,10 +93,6 @@ controllers.getProfile = async (req, res) => {
                         }
                     })
                 })
-                .catch(err2 => res.send({
-                    success: false,
-                    message: err2
-                }))
         })
         .catch(err => res.send({
             success: false,
@@ -89,10 +115,6 @@ controllers.newPost = async (req, res) => {
                     success: true,
                     post: result2[0][0]
                 }))
-                .catch(err2 => res.send({
-                    success: false,
-                    message: err2
-                }))
         })
         .catch(err => res.send({
             success: false,
@@ -109,10 +131,23 @@ controllers.getPublicPosts = async (req, res) => {
 
     await promisePool.query(q)
         .then(async result => {
-            res.send({
-                success: true,
-                data: result[0]
-            })
+            let postIds = '', finalData
+            result[0].map(r => postIds += r.id + ',')
+            finalData = result[0]
+            await promisePool.query(`select postId from postLikes where
+            userId = ${req.body.userId} and postId IN (${postIds.slice(0, -1)})`)
+                .then(result2 => {
+                    finalData = finalData.map(f => {
+                        return {
+                            ...f,
+                            liked: result2[0].some(i => i.postId == f.id)
+                        }
+                    })
+                    res.send({
+                        success: true,
+                        data: finalData
+                    })
+                })
         })
         .catch(err => res.send({
             success: false,
@@ -145,7 +180,8 @@ controllers.login = async (req, res) => {
     res.send({
         success: true, token, user: {
             username: user.username,
-            name: user.name
+            name: user.name,
+            id: user.id
         }
     })
 }

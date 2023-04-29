@@ -1,6 +1,6 @@
 <script>
 import { formatDate } from "../../services/dateFormatter"
-
+import { like } from '../actions.js'
 export let post = null
 </script>
 
@@ -26,10 +26,19 @@ export let post = null
       {post?.content}
     </p>
     <div class="w-full pt-1 flex justify-between gap-2 opacity-[.3]">
-      <span class="font-[mainFont] opacity-[.3]">
+      <span class="font-[mainFont]">
         {post?.createdAt ? formatDate(post?.createdAt) : "..."}</span>
-      <div>
-        <i class="bx bx-heart"></i>
+      <div class="flex items-center gap-2 text-lg">
+        <button class="flex items-center gap-1" 
+        on:click={() => {
+          like(post?.id, post?.liked)
+          post.liked ? post.likesCount-- : post.likesCount++ 
+          post.liked = !post.liked 
+        }}>
+          <span class="font-[mainFont]">
+            {post?.likesCount !== 0 ? post?.likesCount : ''}</span>
+          <i class={post?.liked ? `bx bxs-heart` : `bx bx-heart`}></i>
+        </button>
         <i class="bx bx-comment"></i>
       </div>
     </div>
