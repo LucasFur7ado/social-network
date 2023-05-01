@@ -1,13 +1,15 @@
 import { Fetcher } from "$lib/services/fetcher"
+import { goto } from '$app/navigation'
 
-export const follow = async (idToFollow) => {
+export const follow = async (idToFollow, following) => {
     let result = {
         success: true,
         error: null,
         data: null
     }
     await Fetcher.post(`/follow`, {
-        toFollow: idToFollow
+        toFollow: idToFollow,
+        unfollow: following 
     })
         .then(async res => {
            console.log("RES", res)
@@ -42,10 +44,15 @@ export const loadProfile = async (id) => {
                 },
             }
         })
-        .catch(err => result = {
-            ...result,
-            error: err,
-            success: false
+        .catch(err => {
+            console.log("Error => ", err)
+            result = {
+                ...result,
+                error: err,
+                success: false
+            }
+            if(err.response.status == 401)
+                goto('/login')
         })
     return result 
 }

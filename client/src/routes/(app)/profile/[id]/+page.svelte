@@ -1,6 +1,6 @@
 <script>
-import { page } from "$app/stores"
 import { onMount } from "svelte"
+import { page } from "$app/stores"
 import { loadProfile, follow } from "./actions.js"
 import PostCard from "$lib/components/cards/PostCard.svelte"
 
@@ -22,11 +22,17 @@ onMount(async () => (data = await loadProfile($page.params.id)))
     </div>
     <div class="flex flex-col items-end gap-2 text-lg">
       <span>{data?.data?.user?.followers ?? "..."} seguidores</span>
-      <button
-        on:click="{() => follow($page.params.id)}"
-        class="bg-white text-black border-[1px] rounded-full px-8 py-0
-          font-[mainFont] w-full text-[16px]">
-        Follow
+      <button on:click="{() => {
+        follow($page.params.id, data?.data?.user?.followed)
+        data.data.user.followers = data.data.user.followed ? 
+        data.data.user.followers - 1 : data.data.user.followers + 1
+        data.data.user.followed = !data.data.user.followed 
+      }}"
+        class="{`${ data?.data?.user?.followed
+            ? 'border-[1px] bg-transparent text-white'
+            : 'bg-white text-black'} rounded-full px-8 py-0 
+            font-[mainFont] w-full text-[16px]`}">
+        {data?.data?.user?.followed ? "Unfollow" : "Follow"}
       </button>
     </div>
   </div>
@@ -34,9 +40,7 @@ onMount(async () => (data = await loadProfile($page.params.id)))
     {#each data == null ? new Array(5) : data?.data?.posts as post}
       <PostCard post="{post}" />
     {:else}
-      <span class="text-[#555] text-2xl">
-        No hay publicaciones (◡︵◡)
-      </span>
+      <span class="text-[#555] text-2xl"> No hay publicaciones (◡︵◡) </span>
     {/each}
   </div>
 </div>
