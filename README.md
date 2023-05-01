@@ -1,10 +1,5 @@
 # Es 
-### Red social minimalista 
-Desarrollada con:
-- SvelteKit
-- NodeJS
-- MySQL
-- Tailwind
+### Red social minimalista desarrollada con SvelteKit, NodeJS, MySQL y TailwindCSS.
 
 ### Set up
 - Clona el repositorio en tu equipo:
@@ -53,12 +48,7 @@ Para usar la aplicación puedes usar el siguiente usuario de prueba: <br/><br/>
 
 
 # En
-### Minimalistic social network 
-Stack:
-- SvelteKit
-- NodeJS
-- MySQL
-- Tailwind
+### Minimalistic social network developed with SvelteKit, NodeJS, MySQL and TailwindCSS.
 
 ### Set up
 - Clone the repository:
