@@ -1,6 +1,6 @@
 INSERT INTO users (name, username, followers, email, role, password, isVerified)
-VALUES ('Lucas', 'lucas.furtado', 3, 'super3millucas@gmail.com', 2, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
-('Luquitas Mendez', 'lucas_00', 3, 'lucas@gmail.com', 1, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
+VALUES ('Test account', 'test_test', 3, 'test@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
+('Luquitas Mendez', 'lucas_00', 3, 'lucas@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
 ('Bruno Such', 'bruno.bruno', 3, 'bruno@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
 ('Carlos tevez', 'tevez_14', 3, 'carlos@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
 ('Manuel', 'manuel', 3, 'manuel@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
