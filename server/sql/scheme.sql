@@ -34,6 +34,7 @@ CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 CREATE TABLE lists (
     id INTEGER NOT NULL AUTO_INCREMENT,
     name varchar(30) NOT NULL,
+    peopleCount INTEGER NOT NULL,
     userId integer not null,
     foreign key (userId) REFERENCES users(id),
     primary key(id)

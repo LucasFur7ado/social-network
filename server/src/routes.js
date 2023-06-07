@@ -1,20 +1,24 @@
 import { Router } from 'express'
-import { controllers } from './controllers.js'
+import { get } from './controllers/get.js'
+import { auth } from './controllers/auth.js'
+import { funcs } from './controllers/funcs.js'
 import { isLogged, isAdmin } from './middlewares.js'
 
 const router = Router()
 
-router.post('/login', controllers.login)
-router.get('/search/:text', controllers.search)
+router.post('/login', auth.login)
+router.get('/verifyLogin', isLogged, auth.verifyLogin)
 
 // router.post('/register', controllers.register)
 // router.get('/getUser', controllers.getPrivatePosts)
 
-router.post('/like', isLogged, controllers.like)
-router.post('/follow', isLogged, controllers.follow)
-router.post('/newPost', isLogged, controllers.newPost)
-router.get('/verifyLogin', isLogged, controllers.verifyLogin)
-router.get('/getProfile/:id', isLogged, controllers.getProfile)
-router.get('/getPublicPosts', isLogged, controllers.getPublicPosts)
+router.get('/getLists', isLogged, get.getLists)
+router.get('/getProfile/:id', isLogged, get.getProfile)
+router.get('/getPublicPosts', isLogged, get.getPublicPosts)
+
+router.get('/search/:text', funcs.search)
+router.post('/like', isLogged, funcs.like)
+router.post('/follow', isLogged, funcs.follow)
+router.post('/newPost', isLogged, funcs.newPost)
 
 export default router
