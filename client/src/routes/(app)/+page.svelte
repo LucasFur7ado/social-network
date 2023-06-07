@@ -25,7 +25,8 @@ $: {
 <section class="h-full rounded-lg w-full h-screen relative">
   <div class="gap-2 grid">
     <NewPostEditor />
-    {#each data == null ? new Array(9) : data?.data as post}
+    {#each (data == null || !data.success) 
+    ? new Array(9) : data?.data as post}
       <PostCard post="{post}" />
     {/each}
   </div>

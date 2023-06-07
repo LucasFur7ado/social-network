@@ -8,14 +8,18 @@
 }
 
 :root {
-    --primary: #46beff;
-    --primary-transparent: #46beff55;
+    --background: #18232e;
+    --primary: #80d3ff;
+    --primary-transparent: #80d3ffa8;
+    --secondary: #202d3a;
+    --third: #334455;
+    --semi-transparent: #fff5;
 }
 
 body {
     font-family: 'Times New Roman', Times, serif;
     font-size: 18px;
-    background-color: #141414;
+    background-color: var(--background);
     color: white;
 }
 

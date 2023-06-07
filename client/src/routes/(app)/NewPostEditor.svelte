@@ -9,7 +9,7 @@ onMount(async () => (data = await loadUser()))
 </script>
 
 <form on:submit="{handleSubmit}"
-  class="border-[1px] border-[#202020] 
+  class="border-[1px] border-[var(--secondary)]
 rounded-lg flex flex-col justify-between">
   <div class="p-2 font-[mainFont] flex items-center justify-between">
     <div class="flex items-center gap-2">
@@ -20,16 +20,17 @@ rounded-lg flex flex-col justify-between">
     </div>
     <Lists />
   </div>
-  <textarea class="{`font-[arial] text-[16px] outline-0 bg-[#141414] 
-    h-24 border-y-[1px] border-[#202020] p-2`}"
+  <textarea class="{`font-[arial] text-[16px] outline-0 bg-transparent
+    h-24 border-y-[1px] border-[var(--secondary)] p-2`}"
     placeholder="Escribe algo..."
     name="content"
     bind:value="{content}"></textarea>
   <div class="w-full flex items-center justify-between p-2">
     <span class="font-[mainFont]"
       >{300 - content.length !== 300 ? 300 - content.length : ""}</span>
-    <button class="w-[30%] rounded-full px-2 py-1 bg-[#5AA598] text-[15px] 
-        font-[mainFont] text-black">
+    <button class="w-[30%] rounded-full px-2 py-1 
+    border-[1px] border-[var(--secondary)] text-[15px] text-white 
+        font-[mainFont] text-black hover:bg-[var(--secondary)] duration-300">
       Publicar 
     </button>
   </div>

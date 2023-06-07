@@ -8,12 +8,12 @@ export let post = null
   <div class="border-[1px] bg-gradient-to-r from-[#141414] to-[#202020] 
    border-[#202020] rounded-lg w-full h-32"></div>
 {:else}
-  <div class="border-[1px] border-[#202020] rounded-lg p-4 w-full">
+  <div class="rounded-lg p-4 w-full">
     <div class="flex flex-row justify-between text-[16px] gap-2 mb-2">
       <a
         href="{`/profile/${post?.userId}`}"
         class="font-[mainFont] text-[20px]">
-        <span class="{`h-4 text-[#5AA598]`}">{post?.name}</span>
+        <span class="{`h-4 text-[var(--primary)]`}">{post?.name}</span>
         <span class="opacity-[.3]">@{post?.username}</span>
       </a>
       {#if !post?.isPublic}

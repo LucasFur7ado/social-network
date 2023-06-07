@@ -103,4 +103,4 @@ npm run dev
 ~~~
 To try the app you can use a test user: <br/><br/> 
 **Email: test@gmail.com<br/>**
-**Contraseña: 123**
+**Password: 123**

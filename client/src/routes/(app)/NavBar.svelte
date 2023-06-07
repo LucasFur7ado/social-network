@@ -8,7 +8,7 @@ onMount(async () => (data = await loadUser()))
 
 <nav class="h-[80vh] pb-12 w-[25%]">
   <div class="p-8 justify-between 
-    rounded-lg h-full flex flex-col gap-12 border-[1px] border-[#202020]">
+    rounded-lg h-full flex flex-col gap-12 bg-[var(--secondary)]">
     <ul class="text-left">
       <a href="/" class="text-2xl gap-2 mb-2  
       flex flex-row items-center w-full font-[mainFont]">
@@ -47,10 +47,10 @@ onMount(async () => (data = await loadUser()))
         </a>
       {:else}
         <div class="flex flex-col font-[mainFont]">
-          <div class="py-4 flex flex-col">
+          <a href={`/profile/${data?.id}`} class="py-4 flex flex-col">
             <span class="h-6">{data?.name}</span>
-            <span class="text-[16px] text-[#444]">@{data?.username}</span>
-          </div>
+            <span class="text-[16px] text-[var(--primary-transparent)]">@{data?.username}</span>
+          </a>
           <button on:click={logOut} 
           class="bg-transparent border-[1px] rounded-full px-2 py-1
           font-[mainFont] w-full text-lg">
