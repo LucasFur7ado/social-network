@@ -12,8 +12,9 @@ router.get('/verifyLogin', isLogged, auth.verifyLogin)
 // router.post('/register', controllers.register)
 // router.get('/getUser', controllers.getPrivatePosts)
 
-router.get('/getLists', isLogged, get.getLists)
+router.get('/getContacts', isLogged, get.getContacts)
 router.get('/getProfile/:id', isLogged, get.getProfile)
+router.get('/getFollowers', isLogged, get.getFollowers)
 router.get('/getPublicPosts', isLogged, get.getPublicPosts)
 
 router.get('/search/:text', funcs.search)

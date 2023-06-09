@@ -21,24 +21,16 @@ CREATE TABLE posts (
     id INTEGER NOT NULL AUTO_INCREMENT,
     content VARCHAR(300) NOT NULL,
     isPublic BOOLEAN not null default true,
+    destinationUserId INTEGER, -- In case isPublic == 0
     isEdited BOOLEAN not null default false,
     likesCount INTEGER not null default 0,
-    commentsCount INTEGER not null default 0,
     userId integer not null,
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     foreign key (userId) REFERENCES users(id),
+    foreign key (destinationUserId) REFERENCES users(id),
     primary key (id)
 )
 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-
-CREATE TABLE lists (
-    id INTEGER NOT NULL AUTO_INCREMENT,
-    name varchar(30) NOT NULL,
-    peopleCount INTEGER NOT NULL,
-    userId integer not null,
-    foreign key (userId) REFERENCES users(id),
-    primary key(id)
-);
 
 CREATE TABLE follow (
     id INTEGER NOT NULL AUTO_INCREMENT,
@@ -58,20 +50,3 @@ CREATE TABLE postLikes (
     primary key(id)
 );
 
-CREATE TABLE inlist (
-    id INTEGER NOT NULL AUTO_INCREMENT,
-    listId INTEGER NOT NULL,
-    userId INTEGER NOT NULL,
-    foreign key (listId) REFERENCES lists(id),
-    foreign key (userId) REFERENCES users(id),
-    primary key(id)
-);
-
-CREATE TABLE sharedWith (
-    id INTEGER NOT NULL AUTO_INCREMENT,
-    postId INTEGER NOT NULL,
-    userId INTEGER NOT NULL,
-    foreign key (postId) REFERENCES posts(id),
-    foreign key (userId) REFERENCES users(id),
-    primary key(id)
-);

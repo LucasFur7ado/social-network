@@ -1,15 +1,15 @@
 INSERT INTO users (name, username, followers, email, role, password, isVerified)
-VALUES ('Test account', 'test_test', 3, 'test@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
-('Luquitas Mendez', 'lucas_00', 3, 'lucas@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
-('Bruno Such', 'bruno.bruno', 3, 'bruno@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
-('Carlos tevez', 'tevez_14', 3, 'carlos@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
-('Manuel', 'manuel', 3, 'manuel@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
-('Juan ryan', 'juanf', 3, 'juanf14@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
-('Stef K', 'stef_k_34', 1, 'stefnirkniev@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
-('Marcelo guerra', 'marceloM12', 5, 'marceloM12@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
+VALUES ('Test account', 'test_test', 0, 'test@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
+('Luquitas Mendez', 'lucas_00', 0, 'lucas@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
+('Bruno Such', 'bruno.bruno', 0, 'bruno@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
+('Carlos tevez', 'tevez_14', 0, 'carlos@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
+('Manuel', 'manuel', 0, 'manuel@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
+('Juan ryan', 'juanf', 0, 'juanf14@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
+('Stef K', 'stef_k_34', 0, 'stefnirkniev@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
+('Marcelo guerra', 'marceloM12', 0, 'marceloM12@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
 ('Tata', 'coehlo_tat', 0, 'tatacohelo@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
-('Lucho el mas crack', 'luchoo09', 3, 'lucho1@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
-('Valee', 'vale12_', 2, 'vale@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true);
+('Lucho el mas crack', 'luchoo09', 0, 'lucho1@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true),
+('Valee', 'vale12_', 0, 'vale@gmail.com', 0, '$2b$10$gLa8drEeYgjerZwH7Jip2uijLetyaKce1QcmNvjem.il0jT3lH28O', true);
 
 INSERT INTO posts (userId, content) 
 VALUES (1, '¡Buenos días mundo! ☀️ Hoy es un día lleno de oportunidades y aventuras. ¿Qué planes tienen para hoy? Recuerden siempre ser amables con los demás y disfrutar cada momento al máximo. ¡Feliz jueves! 🎉 #BuenosDías #FelizJueves #Aventuras #Oportunidades #Amabilidad'),
