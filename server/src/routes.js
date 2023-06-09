@@ -8,10 +8,12 @@ const router = Router()
 
 router.post('/login', auth.login)
 router.get('/verifyLogin', isLogged, auth.verifyLogin)
+router.get('/deleteAccount', isLogged, auth.deleteAccount)
 
 // router.post('/register', controllers.register)
 // router.get('/getUser', controllers.getPrivatePosts)
 
+router.get('/getMyUser', isLogged, get.getMyUser)
 router.get('/getContacts', isLogged, get.getContacts)
 router.get('/getProfile/:id', isLogged, get.getProfile)
 router.get('/getFollowers', isLogged, get.getFollowers)

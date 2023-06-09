@@ -2,6 +2,24 @@ import { promisePool } from '../db/index.js'
 
 export const get = {}
 
+get.getMyUser = async (req, res) => {
+    await promisePool.query(`SELECT email, username, name, isVerified 
+    FROM users WHERE id = ${req.body.userId}`)
+        .then(async r => {
+            res.send({
+                success: true,
+                user: r[0]
+            })
+        })
+        .catch(err => {
+            console.log("Error => ", err)
+            res.send({
+                success: false,
+                message: err
+            })
+        })
+}
+
 get.getFollowers = async (req, res) => {
     await promisePool.query(`
     SELECT U.name, U.username, U.id FROM users AS U WHERE U.id IN (
@@ -46,7 +64,7 @@ get.getContacts = async (req, res) => {
 
 get.getProfile = async (req, res) => {
     let id = req.params.id
-    const { userId } = req.body 
+    const { userId } = req.body
     await Promise.all([
         await promisePool.query(`SELECT users.username, users.name, users.followers,
       users.id FROM users WHERE id = ${id}`),

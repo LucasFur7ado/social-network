@@ -28,7 +28,7 @@ $: {
 <section class="h-full rounded-lg w-full h-screen relative">
   <div class="gap-2 grid p-2 pt-0">
     <NewPostEditor />
-    <div class="grid gap-8 mt-4 p-2">
+    <div class="grid gap-2 p-2">
       {#each (data == null || !data.success) 
       ? new Array(9) : data?.data as post}
         <PostCard post="{post}" {user} />

@@ -1,9 +1,9 @@
 <script>
 import { onMount } from "svelte"
 import { page } from "$app/stores"
+import { loadUser } from "../../actions.js"
 import { loadProfile, follow } from "./actions.js"
 import PostCard from "$lib/components/cards/PostCard.svelte"
-import { loadUser } from "../../actions.js"
 
 let user, pageUser = null, data = null 
 onMount(async () => {
@@ -46,7 +46,7 @@ onMount(async () => {
     </div>
   </div>
 </div>
-<div class="grid gap-8 p-4">
+<div class="grid gap-2 p-4">
   {#each data == null ? new Array(5) : data?.data?.posts as post}
     <PostCard post="{post}" />
   {:else}

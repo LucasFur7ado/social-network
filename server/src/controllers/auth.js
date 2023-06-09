@@ -6,6 +6,21 @@ import { generateCode } from '../services/generateCode.js'
 
 export const auth = {}
 
+auth.deleteAccount = async (req, res) => {
+    await promisePool.query(`DELETE FROM users 
+    WHERE id = ${req.body.userId}`)
+        .then(async r => {
+            res.send({ success: true })
+        })
+        .catch(err => {
+            console.log("Error => ", err)
+            res.send({
+                success: false,
+                message: err
+            })
+        })
+}
+
 auth.verifyLogin = async (req, res) => {
     res.send({ success: true })
 }

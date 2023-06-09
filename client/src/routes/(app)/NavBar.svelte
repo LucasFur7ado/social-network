@@ -25,7 +25,7 @@ onMount(async () => (data = await loadUser()))
         <i class="bx bxs-user"></i>
         <li>Cuenta</li>
       </a>
-      <a href="/settings" class="text-2xl gap-2 mb-2  
+      <a href="/account" class="text-2xl gap-2 mb-2  
       flex flex-row items-center w-full font-[mainFont]">
         <i class="bx bxs-cog"></i>
         <li>Config.</li>

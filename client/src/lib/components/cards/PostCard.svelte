@@ -11,7 +11,7 @@ export let post = null,
    rounded-lg w-full h-32">
   </div>
 {:else}
-  <div class="rounded-lg w-full">
+  <div class="rounded-lg w-full py-2">
     <div class="flex flex-row justify-between text-[16px] gap-2 mb-2">
       <a
         href="{`/profile/${post?.userId}`}"
