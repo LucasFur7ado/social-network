@@ -9,11 +9,11 @@ onMount(async () => (data = await loadUser()))
 </script>
 
 <form on:submit="{handleSubmit}"
-  class="border-[1px] border-[var(--secondary)]
+  class="border-[1px] border-[var(--secondary)] relative
 rounded-lg flex flex-col justify-between">
   <div class="p-2 font-[mainFont] flex items-center justify-between">
     <div class="flex items-center gap-2">
-      <i class="bx bxs-circle text-[10px] text-[#5AA598]"></i>
+      <i class="bx bxs-circle text-[10px] text-[var(--primary)]"></i>
       <span>
         {data?.name ?? ". . ."}
       </span>

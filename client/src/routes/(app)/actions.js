@@ -3,6 +3,25 @@ import postStore from '$lib/store/post.js'
 import { goto } from '$app/navigation'
 import Cookies from 'js-cookie'
 
+export const getContacts = async () => {
+    let result = {}
+    await Fetcher.get(`/getContacts`)
+        .then(async res => {
+            result.data = res.data.people 
+        })
+        .catch(err => {
+            if (err?.response?.status == 401) {
+                goto('/login')
+            }
+            result = {
+                ...result,
+                error: err.response.data.message,
+                success: false
+            }
+        })
+    return result
+}
+
 export const loadUser = async () => {
     let user = Cookies.get('user') ?? false
     if (!user)
@@ -41,12 +60,13 @@ export const handleSubmit = async (e) => {
         posting: true
     })
     const formData = new FormData(e.target)
-    if (!formData.get('content')) {
+    if (!formData.get('content') || !formData.get('who')) {
         alert("Empty data")
         return
     }
     Fetcher.post('/newPost', {
-        content: formData.get('content')
+        content: formData.get('content'),
+        who: formData.get('who'),
     })
         .then(res => {
             if (!res.data.success)

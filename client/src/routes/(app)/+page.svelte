@@ -1,13 +1,16 @@
 <script>
 import Cookies from "js-cookie"
 import { onMount } from "svelte"
-import { loadData } from "./actions.js"
 import postStore from "$lib/store/post.js"
+import { loadData, loadUser } from "./actions.js"
 import NewPostEditor from "./NewPostEditor.svelte"
 import PostCard from "$lib/components/cards/PostCard.svelte"
 
-let data = null
-onMount(async () => (data = await loadData()))
+let data = null, user 
+onMount(async () => {
+  data = await loadData()
+  user = await loadUser()
+})
 
 $: {
   if ($postStore.newPost !== null) {
@@ -23,11 +26,13 @@ $: {
 </script>
 
 <section class="h-full rounded-lg w-full h-screen relative">
-  <div class="gap-2 grid">
+  <div class="gap-2 grid p-2 pt-0">
     <NewPostEditor />
-    {#each (data == null || !data.success) 
-    ? new Array(9) : data?.data as post}
-      <PostCard post="{post}" />
-    {/each}
+    <div class="grid gap-8 mt-4 p-2">
+      {#each (data == null || !data.success) 
+      ? new Array(9) : data?.data as post}
+        <PostCard post="{post}" {user} />
+      {/each}
+    </div>
   </div>
 </section>

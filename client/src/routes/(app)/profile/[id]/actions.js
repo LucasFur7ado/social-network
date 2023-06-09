@@ -2,6 +2,8 @@ import { Fetcher } from "$lib/services/fetcher"
 import { goto } from '$app/navigation'
 
 export const follow = async (idToFollow, following) => {
+    if(idToFollow == following) 
+        return 
     let result = {
         success: true,
         error: null,
